@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav></nav>
+
+    <section>
+      <h1>Hello, <%= user.displayName || user.email %></h1>
+      <form onchange ="form.submit()" method ="POST" action="/profilepic">
+        <label for="fileField">
+          <img src="<%=user.profilePic ||'nopic.jpg'%>" alt="profile picture" />
+        </label>
+        <input type="file" name="image" id="fileField" hidden />
+      </form>
+    </section>
+
+    <form action="/todos" method="POST">
+      <label>Title</label>
+      <input type="text" name="title" />
+      <label>Description </label>
+      <textarea name="description" cols="30" rows="10"></textarea>
+      <button type="submit">submit</button>
+    </form>
+
+    <div>
+      <ul>
+        <% todos.forEach(todo=>{ %>
+        <li><a href="/todos/<%=todo._id%>"><%=todo.title%></a></li>
+        <% }) %>
+      </ul>
+    </div>
+  </body>
+</html>
